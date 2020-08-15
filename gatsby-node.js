@@ -35,7 +35,8 @@ exports.createPages = async ({ graphql, actions }) => {
             path
             status
             template
-            format
+            title
+            content
           }
         }
       }

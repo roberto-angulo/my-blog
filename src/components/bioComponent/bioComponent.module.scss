@@ -1,0 +1,26 @@
+@mixin squareSize( $size ) {
+    width: $size;
+    height: $size;
+}
+.homeSidebar {
+    position: sticky !important;
+    top: 50px;
+    .bioComponentCard {
+        margin-top: 1.5rem;
+        img {
+            border-radius: 11px 11px 0 0;
+        }
+    }
+}
+
+.bioIntro {
+    .bioDescription {
+        font: {
+            size: 1.55rem;
+        }        
+    }
+}
+
+.bioThumb {
+    @include squareSize( 8.55rem );
+}

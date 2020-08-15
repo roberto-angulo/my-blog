@@ -1,59 +1,111 @@
-import React, { useEffect, useState } from "react";
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import axios from "axios";
-import WrapperApp from "../components/WrapperApp";
-/* import gettingData from "../api/index"; */
+import React, { useEffect, useState } from "react"
+import { Link, StaticQuery, graphql } from "gatsby"
+//import "../styling/index.scss"
+import {
+  SubscribeForm,
+  WrapperApp,
+  PostCard,
+  MessageSubscribe,
+  Jumbotron,
+  BioComponent,
+} from "../components"
+import { Provider, connect } from "react-redux"
+import blogStore, { postsReducer } from "../storeReducers/postsReducer"
+import dataPosts from "../data"
+import BioComponentStyle from "../components/bioComponent/bioComponent.module.scss"
+import cx from "classnames"
 
-const IndexPage = () => {
-/*     const data = useStaticQuery( graphql`
-        query {
-            site {
-                siteMetaData {
-                    title
-                }
-            }        
-        }` 
-    ); */
-
-    const title = 'Roberto Angulo - Front End developer';
-    const [posts, setPosts] = useState([]);
-
-    const gettingTheData = () => {
-        try {
-            const endpoint = `https://anguloroberto.com.ve/dev/wp-json/wp/v2/posts`;
-            return axios.get(endpoint);
-        } catch( error ) {
-            return error;
-        }
-    }
-
-    /* useEffect(
-        () => {
-            const data = gettingTheData()
-            .then( response => 
-                setPosts( [...response.data] )
-            )
-            .catch( error => console.log( error ) )
-    }, [])
-
-    useEffect(
-        () => {
-            console.log( posts );
-        }, [posts]) */
-
-    
-    return (
-        <div className="container">
-            <div className="row">
-                <h1>{ title }</h1>
-            </div>
-
-            <p>
-                <Link to="/contact">Contact</Link>
-            </p>
+const storeBlog = blogStore()
+const IndexPage = ({ posts }) => {
+  return (
+    <>
+      <Jumbotron />
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-10">
+            <section className="row justify-content-center justify-content-xl-start">
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-md-8 col-xl-6 ml-auto mr-auto text-center">
+                    <div className={cx(BioComponentStyle.bioIntro, "mt-5")}>
+                      <img
+                        src="https://images.pexels.com/photos/2146042/pexels-photo-2146042.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                        className={cx(
+                          BioComponentStyle.bioThumb,
+                          "ObjectFitCover",
+                          "bioThumb",
+                          "rounded-circle"
+                        )}
+                      />
+                      <h2
+                        className={cx(
+                          "w-100",
+                          "pb-4",
+                          "pt-4",
+                          "text-center",
+                          BioComponentStyle.bioDescription
+                        )}
+                      >
+                        Hola, me llamo <Link to="/about">Kairine</Link>, estos
+                        son mis ultimos articulos
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mb-4" />
+              </div>
+              {posts.map((element, index) =>
+                index != 2 ? (
+                  <div className="col-11 col-md-8 col-xl-4">
+                    <PostCard key={`postCard_${index}`} data={element} />
+                  </div>
+                ) : (
+                  <div
+                    className={cx(
+                      "col-xl-3",
+                      "ml-auto",
+                      BioComponentStyle.homeSidebar
+                    )}
+                  >
+                    <BioComponent descriptionColor="white" card="true" />
+                  </div>
+                )
+              )}
+            </section>
+          </div>
         </div>
-)};
+        <hr className="mt-5" />
+        <div className="row justify-content-center mt-5">
+          <div className="col-12 col-md-8">
+            <section className="row justify-content-center">
+              <div className="col-10 col-xl-5">
+                <div className="d-flex h-100 align-items-center">
+                  <MessageSubscribe />
+                </div>
+              </div>
 
-const HomepageComponent = () => <WrapperApp><IndexPage /></WrapperApp>;
+              <div className="col-10 col-xl-7">
+                <SubscribeForm font="font-weight-bolder text-dark" />
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
 
-export default HomepageComponent;
+const mapStateStoreToProps = state => ({
+  posts: dataPosts.posts,
+})
+
+const MainIndexPage = connect(mapStateStoreToProps)(IndexPage)
+
+const HomepageComponent = () => (
+  <Provider store={storeBlog}>
+    <WrapperApp>
+      <MainIndexPage />
+    </WrapperApp>
+  </Provider>
+)
+export default HomepageComponent

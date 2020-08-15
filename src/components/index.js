@@ -1,0 +1,9 @@
+export { default as Footer } from "./Footer";
+export { default as Header } from "./Header";
+export { default as PostCard } from "./PostCard";
+export { default as WrapperApp } from "./WrapperApp";
+export { default as SubscribeForm } from "./forms/SubscribeForm";
+export { default as SocialIconsFollow } from "./socialIconFollow/SocialIconsFollow";
+export { default as MessageSubscribe } from "./homePageComponents/MessageSubscribe";
+export { default as Jumbotron } from "./homePageComponents/Jumbotron";
+export { default as BioComponent } from "./bioComponent/BioComponent";

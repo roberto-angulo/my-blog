@@ -7,7 +7,9 @@
 module.exports = {
   /* Your site config here */
   plugins: [
-    'gatsby-plugin-sass',
+    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-sass",
+    "gatsby-plugin-netlify-cms",
     {
       resolve: "gatsby-source-wordpress",
       options: {
@@ -129,5 +131,5 @@ module.exports = {
         ],
       },
     },
-  ]
+  ],
 }

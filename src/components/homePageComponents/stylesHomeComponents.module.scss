@@ -1,0 +1,19 @@
+$jumbotronImage: "https://images.pexels.com/photos/3689772/pexels-photo-3689772.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
+
+.mailIconSubcribe {
+  width: 2.85rem;
+  display: block;
+  padding-bottom: 0.35rem;
+}
+
+.Jumbotron {
+  background: {
+    image: url($jumbotronImage);
+    color: rgba(#000, 0.5);
+    blend-mode: multiply;
+    size: cover;
+  }
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}

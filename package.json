@@ -14,17 +14,30 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.7",
     "gatsby": "^2.20.35",
+    "gatsby-plugin-netlify-cms": "^4.3.11",
     "gatsby-plugin-sass": "^2.2.4",
     "gatsby-source-wordpress": "^3.2.6",
+    "graphql-tag": "^2.10.3",
+    "netlify-cms-app": "^2.12.19",
     "node-sass": "^4.14.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-apollo": "^3.1.5",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "axios": "^0.19.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "bootstrap": "^4.4.1",
+    "classnames": "^2.2.6",
     "env-cmd": "^10.1.0",
-    "prettier": "2.0.4"
+    "gatsby-plugin-react-helmet": "^3.3.1",
+    "prettier": "2.0.4",
+    "react-helmet": "^6.0.0",
+    "react-redux": "^7.0.2",
+    "redux": "^4.0.5"
   },
   "repository": {
     "type": "git",

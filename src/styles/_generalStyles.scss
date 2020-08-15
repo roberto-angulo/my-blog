@@ -1,0 +1,26 @@
+$primaryColor: #560b4ade;
+$lightColor: #fff;
+$bg-primary: rgb(35, 112, 143);
+
+@mixin buttonStates() {
+  &:hover,
+  &:focus,
+  &:active {
+    color: $lightColor;
+  }
+}
+// Utilities
+.btn.BtnPrimary {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  color: #fff;
+  @include buttonStates();
+}
+
+.BoxShadow {
+  box-shadow: 0 0 11.55px rgba(#000000, 0.05);
+}
+
+.ObjectFitCover {
+  object-fit: cover;
+}

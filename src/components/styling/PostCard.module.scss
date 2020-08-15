@@ -1,0 +1,19 @@
+.post_card {
+    &.post_card.post_card_mt {
+        margin-top: 1.35rem;
+    }
+    &.post_card_bg_gray {
+        background-color: #f2f2f2;
+        border-radius: 11px;
+        box-shadow: 0 0 5.5px rgba(0,0,0,.15);
+        img {
+            width: 100%;
+            object-fit: cover;
+            height: 11rem;
+        }
+    }
+
+    .post_card_wrapper_text {
+        padding: 1.85rem;
+    }
+}

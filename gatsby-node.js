@@ -7,7 +7,7 @@ const { slash } = require(`gatsby-core-utils`)
 // create pages.
 // Will create pages for WordPress pages (route : /{slug})
 // Will create pages for WordPress posts (route : /post/{slug})
-exports.createPages = async ({ graphql, actions }) => {
+/* exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   // The “graphql” function allows us to run arbitrary
@@ -88,4 +88,4 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-}
+} */

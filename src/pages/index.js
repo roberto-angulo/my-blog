@@ -78,25 +78,26 @@ const IndexPage = () => {
                     }
                   }
                 `}
-                render={({ allMarkdownRemark: edges }) => console.log(edges)}
+                render={({ allMarkdownRemark: { edges: edges } }) => {
+                  return edges.map(({ node }, index) =>
+                    index != 2 ? (
+                      <div className="col-11 col-md-8 col-xl-4">
+                        <PostCard key={`postCard_${index}`} data={node} />
+                      </div>
+                    ) : (
+                      <div
+                        className={cx(
+                          "col-xl-3",
+                          "ml-auto",
+                          BioComponentStyle.homeSidebar
+                        )}
+                      >
+                        <BioComponent descriptionColor="white" card="true" />
+                      </div>
+                    )
+                  )
+                }}
               />
-              {posts.map((element, index) =>
-                index != 2 ? (
-                  <div className="col-11 col-md-8 col-xl-4">
-                    <PostCard key={`postCard_${index}`} data={element} />
-                  </div>
-                ) : (
-                  <div
-                    className={cx(
-                      "col-xl-3",
-                      "ml-auto",
-                      BioComponentStyle.homeSidebar
-                    )}
-                  >
-                    <BioComponent descriptionColor="white" card="true" />
-                  </div>
-                )
-              )}
             </section>
           </div>
         </div>

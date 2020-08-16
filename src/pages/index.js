@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 //import "../styling/index.scss"
 import {
@@ -14,9 +14,13 @@ import blogStore, { postsReducer } from "../storeReducers/postsReducer"
 import dataPosts from "../data"
 import BioComponentStyle from "../components/bioComponent/bioComponent.module.scss"
 import cx from "classnames"
+import appContext from "../../context"
 
 const storeBlog = blogStore()
-const IndexPage = ({ posts }) => {
+const IndexPage = () => {
+  // const foo = useContext(appContext)
+
+  const { posts } = dataPosts
   return (
     <>
       <Jumbotron />
@@ -54,6 +58,28 @@ const IndexPage = ({ posts }) => {
                 </div>
                 <hr className="mb-4" />
               </div>
+
+              <StaticQuery
+                query={graphql`
+                  {
+                    allMarkdownRemark {
+                      edges {
+                        node {
+                          fields {
+                            slug
+                          }
+                          frontmatter {
+                            title
+                            description
+                            date
+                          }
+                        }
+                      }
+                    }
+                  }
+                `}
+                render={({ allMarkdownRemark: edges }) => console.log(edges)}
+              />
               {posts.map((element, index) =>
                 index != 2 ? (
                   <div className="col-11 col-md-8 col-xl-4">
@@ -95,16 +121,10 @@ const IndexPage = ({ posts }) => {
   )
 }
 
-const mapStateStoreToProps = state => ({
-  posts: dataPosts.posts,
-})
-
-const MainIndexPage = connect(mapStateStoreToProps)(IndexPage)
-
 const HomepageComponent = () => (
   <Provider store={storeBlog}>
     <WrapperApp>
-      <MainIndexPage />
+      <IndexPage />
     </WrapperApp>
   </Provider>
 )

@@ -4,6 +4,7 @@ date: 2020-08-16T00:43:31.275Z
 description: En el norte de Perú, los pobladores de Culden, Cajamarca,
   escucharon que el virus que provoca la enfermedad conocida como COVID-19, y
   que ha puesto al mundo de cabeza, se originó en los murciélagos
+thumbnail: /images/1-arepapollo.jpg
 ---
 <!--StartFragment-->
 

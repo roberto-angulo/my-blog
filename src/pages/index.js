@@ -19,8 +19,6 @@ import appContext from "../../context"
 const storeBlog = blogStore()
 const IndexPage = () => {
   // const foo = useContext(appContext)
-
-  const { posts } = dataPosts
   return (
     <>
       <Jumbotron />
@@ -72,6 +70,7 @@ const IndexPage = () => {
                             title
                             description
                             date
+                            thumbnail
                           }
                         }
                       }
@@ -79,8 +78,8 @@ const IndexPage = () => {
                   }
                 `}
                 render={({ allMarkdownRemark: { edges: edges } }) => {
-                  return edges.map(({ node }, index) =>
-                    index != 2 ? (
+                  return edges.map(({ node }, index) => {
+                    return index != 2 ? (
                       <div className="col-11 col-md-8 col-xl-4">
                         <PostCard key={`postCard_${index}`} data={node} />
                       </div>
@@ -95,7 +94,7 @@ const IndexPage = () => {
                         <BioComponent descriptionColor="white" card="true" />
                       </div>
                     )
-                  )
+                  })
                 }}
               />
             </section>
@@ -110,7 +109,6 @@ const IndexPage = () => {
                   <MessageSubscribe />
                 </div>
               </div>
-
               <div className="col-10 col-xl-7">
                 <SubscribeForm font="font-weight-bolder text-dark" />
               </div>

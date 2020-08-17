@@ -1,55 +1,38 @@
-import React from 'react';
-import blogStore from '../storeReducers/postsReducer';
-import { connect } from "react-redux";
-import { graphql } from 'gatsby';
+import React from "react"
 
-export default class Post extends React.Component {
-   constructor() {
-        super();
-        this.myStore = blogStore();
-        this.state = {
-            posts: []
-        }
-   }
+const Post = props => {
+  /* this.unsubscribe(); */
+  console.log(props)
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-10">
+          {/*   <h1
+            dangerouslySetInnerHTML={{ __html: this.fetchingPosts().title }}
+          ></h1>
+          <div
+            dangerouslySetInnerHTML={{ __html: this.fetchingPosts().content }}
+          ></div> */}
 
-    fetchingPosts() {
-        const data = this.props.pageContext ? this.props.pageContext.data : null;
-        if( data ) {
-            return data;
-        }
-        return data;
-    }
-
-    unsubscribe() {
-        this.myStore.subscribe( () => console.log( this.myStore.getState() ) )
-    }
-
-    componentDidMount() {
-        const posts = this.fetchingPosts();
-        this.myStore.dispatch( { type: 'GETTING_POSTS', posts } );
-    }
-
-    render() {
-        /* this.unsubscribe(); */
-        return(
-            <div className="container mt-5">
-                <div className="row justify-content-center">
-                    <div className="col-10">
-                        <h1 dangerouslySetInnerHTML={ {__html:this.fetchingPosts().title} }></h1>
-                        <div dangerouslySetInnerHTML={{ __html:this.fetchingPosts().content} }></div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+          <div dangerouslySetInnerHTML={{ __html: props.pageContext.body }} />
+        </div>
+      </div>
+    </div>
+  )
 }
+export default Post
 
-
-/* export const postQuery = graphql`
-  query($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      title
-      content
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
+      html
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        description
+      }
     }
-  }`;
- */
+  }
+`

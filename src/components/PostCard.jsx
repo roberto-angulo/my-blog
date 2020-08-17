@@ -3,7 +3,8 @@ import PostCardStyles from "./styling/PostCard.module.scss"
 import { Link } from "gatsby"
 import cx from "classnames"
 
-const PostCard = ({ data: { frontmatter } }) => {
+const PostCard = ({ data: { frontmatter, fields } }) => {
+  const imageSrc = window.location.href.trim("/").concat(frontmatter.thumbnail)
   return (
     <div
       className={cx(
@@ -12,9 +13,7 @@ const PostCard = ({ data: { frontmatter } }) => {
         PostCardStyles.post_card_mt
       )}
     >
-      {frontmatter.thumbnail && (
-        <img src={frontmatter.thumbnail} className="mw-100" />
-      )}
+      {frontmatter.thumbnail && <img src={imageSrc} className="mw-100" />}
       <div className={PostCardStyles.post_card_wrapper_text}>
         {frontmatter.title && (
           <h3 className="font-weight-bold">{frontmatter.title}</h3>
@@ -23,7 +22,7 @@ const PostCard = ({ data: { frontmatter } }) => {
           <p className="pt-3">{frontmatter.description}</p>
         )}
         <p>
-          <Link to="/" className="btn BtnPrimary">
+          <Link to={fields.slug} className="btn BtnPrimary">
             Leer mas
           </Link>
         </p>

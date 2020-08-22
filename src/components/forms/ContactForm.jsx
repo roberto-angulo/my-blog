@@ -16,6 +16,7 @@ const ContactForm = () => (
         id="nameInput"
         className="form-control"
         placeholder="Nombre"
+        name="nameInput"
       />
     </p>
 
@@ -25,7 +26,17 @@ const ContactForm = () => (
         id="emailInput"
         className="form-control"
         placeholder="Email"
+        name="emailInput"
       />
+    </p>
+
+    <p>
+      <textarea
+        name="textareaInput"
+        id="textareaInput"
+        className="form-control"
+        rows="3"
+      ></textarea>
     </p>
 
     <button className={cx("btn", CSS.ButtonContact)}>{buttonText}</button>

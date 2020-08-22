@@ -8,7 +8,8 @@ const { contactText, buttonText } = {
 }
 
 const ContactForm = () => (
-  <form method="POST" name="contactForm" data-netlify="true">
+  <form method="POST" name="contactForm" data-netlify="true" action="/blog">
+    <input type="hidden" name="form-name" value="contact" />
     <h4 className="mb-3 font-weight-light text-white">{contactText}</h4>
     <p>
       <input
@@ -43,7 +44,6 @@ const ContactForm = () => (
     <button type="submit" className={cx("btn", CSS.ButtonContact)}>
       {buttonText}
     </button>
-    <input type="hidden" name="form-name" value="contact" />
   </form>
 )
 export default ContactForm

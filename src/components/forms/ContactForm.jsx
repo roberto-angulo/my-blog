@@ -43,7 +43,7 @@ const ContactForm = () => (
     <button type="submit" className={cx("btn", CSS.ButtonContact)}>
       {buttonText}
     </button>
-    <input type="hidden" name="contactInputField" value="contact" />
+    <input type="hidden" name="form-name" value="contact" />
   </form>
 )
 export default ContactForm

@@ -8,7 +8,7 @@ const { contactText, buttonText } = {
 }
 
 const ContactForm = () => (
-  <form method="post" name="contactForm" data-netlify="true">
+  <form method="POST" name="contactForm" data-netlify="true">
     <h4 className="mb-3 font-weight-light text-white">{contactText}</h4>
     <p>
       <input

@@ -32,6 +32,7 @@ const ContactForm = () => (
 
     <p>
       <textarea
+        placeholder="Mensaje"
         name="textareaInput"
         id="textareaInput"
         className="form-control"

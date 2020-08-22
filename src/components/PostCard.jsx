@@ -3,8 +3,10 @@ import PostCardStyles from "./styling/PostCard.module.scss"
 import { Link } from "gatsby"
 import cx from "classnames"
 
-const PostCard = ({ data: { frontmatter, fields } }) => {
-  const imageSrc = window.location.href.trim("/").concat(frontmatter.thumbnail)
+const PostCard = ({ data: { frontmatter, fields }, dataSite = "" }) => {
+  const imageSrc = "https://jolly-montalcini-add915.netlify.app".concat(
+    frontmatter.thumbnail
+  )
   return (
     <div
       className={cx(

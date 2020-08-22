@@ -1,4 +1,8 @@
 .NavLink {
+  color: #fff;
+  &:hover,
+  &:focus,
+  &:active {
     color: #fff;
-    
+  }
 }

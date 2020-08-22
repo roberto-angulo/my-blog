@@ -11,14 +11,12 @@ import {
 } from "../components"
 import { Provider, connect } from "react-redux"
 import blogStore, { postsReducer } from "../storeReducers/postsReducer"
-import dataPosts from "../data"
 import BioComponentStyle from "../components/bioComponent/bioComponent.module.scss"
 import cx from "classnames"
-import appContext from "../../context"
+import PostsEntries from "../components/postsComponents/PostsEntries"
 
 const storeBlog = blogStore()
 const IndexPage = () => {
-  // const foo = useContext(appContext)
   return (
     <>
       <Jumbotron />
@@ -48,8 +46,11 @@ const IndexPage = () => {
                           BioComponentStyle.bioDescription
                         )}
                       >
-                        Hola, me llamo <Link to="/about">Kairine</Link>, estos
-                        son mis ultimos articulos
+                        Hola, me llamo{" "}
+                        <Link to="/about" className="text-dark">
+                          Kairine
+                        </Link>
+                        , estos son mis ultimos articulos
                       </h2>
                     </div>
                   </div>
@@ -57,46 +58,7 @@ const IndexPage = () => {
                 <hr className="mb-4" />
               </div>
 
-              <StaticQuery
-                query={graphql`
-                  {
-                    allMarkdownRemark {
-                      edges {
-                        node {
-                          fields {
-                            slug
-                          }
-                          frontmatter {
-                            title
-                            description
-                            date
-                            thumbnail
-                          }
-                        }
-                      }
-                    }
-                  }
-                `}
-                render={({ allMarkdownRemark: { edges: edges } }) => {
-                  return edges.map(({ node }, index) => {
-                    return index != 2 ? (
-                      <div className="col-11 col-md-8 col-xl-4">
-                        <PostCard key={`postCard_${index}`} data={node} />
-                      </div>
-                    ) : (
-                      <div
-                        className={cx(
-                          "col-xl-3",
-                          "ml-auto",
-                          BioComponentStyle.homeSidebar
-                        )}
-                      >
-                        <BioComponent descriptionColor="white" card="true" />
-                      </div>
-                    )
-                  })
-                }}
-              />
+              <PostsEntries showBio={true} />
             </section>
           </div>
         </div>
@@ -120,11 +82,13 @@ const IndexPage = () => {
   )
 }
 
-const HomepageComponent = () => (
-  <Provider store={storeBlog}>
-    <WrapperApp>
-      <IndexPage />
-    </WrapperApp>
-  </Provider>
-)
+const HomepageComponent = () => {
+  return (
+    <Provider store={storeBlog}>
+      <WrapperApp>
+        <IndexPage />
+      </WrapperApp>
+    </Provider>
+  )
+}
 export default HomepageComponent

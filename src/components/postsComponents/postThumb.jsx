@@ -31,7 +31,6 @@ const PostThumbSmall = () => (
             className={(Styling.c_post_thumb, Styling.c_post_thumb_modifier)}
           >
             {edges.map(({ node }, index) => {
-              console.log(node)
               return index < 3 ? (
                 <div
                   className="row justify-content-center"

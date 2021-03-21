@@ -9,6 +9,8 @@ const Post = props => {
     backgroundPosition: 0,
     height: `19rem`,
   }
+
+  console.log(props)
   return (
     <>
       <Header />

@@ -7,25 +7,24 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPost = path.resolve(`./src/templates/post.js`)
   const result = await graphql(
     `
-      {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-                thumbnail
-                date
-              }
+    {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        edges {
+          node {
+            rawMarkdownBody
+            fields {
+              slug
+              
+            }
+            frontmatter {
+              title
+              thumbnail
+              date
             }
           }
         }
-        markdownRemark {
-          rawMarkdownBody
-        }
       }
+    }
     `
   )
 
@@ -48,7 +47,7 @@ exports.createPages = async ({ graphql, actions }) => {
         previous,
         next,
         data: post.node.frontmatter,
-        body: result.data.markdownRemark.rawMarkdownBody,
+        body: post.node.rawMarkdownBody,
       },
     })
   })
